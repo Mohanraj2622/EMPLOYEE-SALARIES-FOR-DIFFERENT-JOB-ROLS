@@ -1,0 +1,22 @@
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Preparing data for machine learning
+X = salaries[['experience_level', 'employment_type', 'job_title']]
+y = salaries['salary_in_usd']
+
+# Splitting data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Creating a linear regression model
+model = LinearRegression()
+
+# Training the model
+model.fit(X_train, y_train)
+
+# Making predictions
+predictions = model.predict(X_test)
+
+# Evaluating the model
+print("Mean Absolute Error:", np.mean(np.abs(predictions - y_test)))
+print("R-squared:", model.score(X_test, y_test))
